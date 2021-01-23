@@ -1,0 +1,138 @@
+package u5examen;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+/**
+ *
+ * @author FANNY
+ */
+public class NewClass {
+  Scanner leer = new Scanner(System.in);
+    
+  
+    public static void muestraContenido(String archivo) throws FileNotFoundException, IOException {
+        String cadena;
+        FileReader f = new FileReader(archivo);
+        BufferedReader b = new BufferedReader(f);
+        cadena = b.readLine();
+        String [] numeros =(cadena.split(" "));
+        Ordenar(numeros); 
+        b.close();
+    }
+
+    public static void main(String[] args) throws IOException {
+        muestraContenido("E:\\Documentos\\Nueva carpeta\\numeros.txt");
+        
+    }
+    
+    public static void Ordenar(String [] numeros){
+       Scanner leer = new Scanner(System.in);
+        int r;
+        int []num=new int[numeros.length]; 
+        for (int i = 0; i < numeros.length; i++) {
+            num[i]=Integer.parseInt(numeros[i]);
+        }
+      System.out.println("Menu");
+        System.out.println("1.Burbuja");
+        System.out.println("2.QuickSort");
+        System.out.println("3.Radix");
+        System.out.println("4.ShellSort");
+        r = leer.nextInt();
+        switch(r)
+        {
+            case 1: System.out.println("Arreglo inicial");
+        for (int i = 0; i < num.length; i++) {
+            System.out.print(num[i]+"\t");
+        }
+        for(int i = 0; i < num.length-1;i++)
+        {
+            for(int j = 0; j<num.length-1; j++)
+            {
+                if(num[j]> num[j+1])
+                {
+                    int auxiliar = num[j+1];
+                    num[j+1] = num[j];
+                    num[j] = auxiliar;
+                } 
+            }
+        }
+        System.out.println("\nArreglo Ordenado");
+        for (int i = 0; i < num.length; i++) {
+            System.out.print(num[i]+"\t");
+        }   
+        System.out.println("");
+        break;
+            case 2: 
+                
+                
+                break;
+            case 3:  int x, i, j;
+        for(x=Integer.SIZE-1; x>=0; x--)
+        {
+            int auxiliar[]= new int[num.length];
+            j = 0;
+            for(i = 0; i<num.length; i++)
+            {
+                boolean mover = num[i] << x >= 0;
+                
+                if(x==0 ? !mover:mover)
+                {
+                    auxiliar[j]=num[i];
+                    j++;
+                }else
+                {
+                    num[i-j]= num[i];
+                    //System.out.print(arreglo[i]+" prueba");
+                }
+            }
+            System.out.println();
+            for(i=j; i<auxiliar.length; i++)
+            {
+                
+                auxiliar[i]=num[i-j];
+                //System.out.println(" ya "+arreglo[i-j]+" prueba "+auxiliar[i]+" aux");
+            }
+            num = auxiliar;
+            
+                        
+        }
+        System.out.println("\nArreglo Ordenado");
+        for (int y = 0; y < num.length; y++) {
+            System.out.print(num[y]+"\t");
+        }   
+        System.out.println("");
+        
+        break;
+            case 4: 
+                int division = num.length/2, salto, aux;
+              //  int aux =0, salto=0, i=0;
+        for(salto = division; salto !=0; salto/=2)
+        {
+            boolean cambio = true;
+            while(cambio)
+            {
+                cambio = false;
+                for(i = salto; i < num.length; i++)
+                {
+                    if(num[i-salto] > num[i])
+                    {
+                        aux = num[i];
+                        num[i] = num[i-salto];
+                        num[i-salto] = aux;
+                        cambio = true;
+                    }
+                }
+            }
+        }
+        }
+        
+            
+        //Mostrar
+        
+    }
+}
+    
+
